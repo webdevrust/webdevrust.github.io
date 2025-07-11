@@ -1,2 +1,102 @@
-~ $ cd webdevrust.github.io
-~ $ echo "hello world" > index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lapland Retreats – Arctic Airbnb Cabins & Tours</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1544025162-d76694265947') no-repeat center center/cover;
+      margin: 0;
+      color: white;
+    }
+    header {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.25rem;
+    }
+    section {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 2rem;
+    }
+    .cta {
+      background-color: #fbbf24;
+      color: #1f2937;
+      padding: 1rem 2rem;
+      border: none;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      border-radius: 0.5rem;
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 1rem;
+      max-width: 300px;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    a {
+      color: #facc15;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Lapland Retreats</h1>
+    <p>Scenic Cabins. Arctic Adventures. Aurora Magic.</p>
+    <button class="cta">Book Your Stay</button>
+  </header>
+
+  <section>
+    <h2>Our Offerings</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Eco-Cabins</h3>
+        <p>Modern, cozy cabins with aurora views & sauna facilities.</p>
+      </div>
+      <div class="card">
+        <h3>Transport Services</h3>
+        <p>4x4 airport pickups, snow-safe vehicles, and guided day trips.</p>
+      </div>
+      <div class="card">
+        <h3>Adventure Tours</h3>
+        <p>Snowmobiles, reindeer safaris, and husky rides curated for you.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Contact & Booking</h2>
+    <p>Email: <a href="mailto:akshay.laplandventures@gmail.com">akshay.laplandventures@gmail.com</a></p>
+    <p>Phone/WhatsApp: +91-XXXXXXXXXX</p>
+    <p>Instagram: <a href="https://instagram.com/lapland.retreats" target="_blank">@lapland.retreats</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Lapland Retreats | Designed by Akshay Chauhan
+  </footer>
+</body>
+</html>
+
