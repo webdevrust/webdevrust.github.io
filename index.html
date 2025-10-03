@@ -1,102 +1,427 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lapland Retreats – Arctic Airbnb Cabins & Tours</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1544025162-d76694265947') no-repeat center center/cover;
-      margin: 0;
-      color: white;
-    }
-    header {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.25rem;
-    }
-    section {
-      background: rgba(0, 0, 0, 0.75);
-      padding: 2rem;
-    }
-    .cta {
-      background-color: #fbbf24;
-      color: #1f2937;
-      padding: 1rem 2rem;
-      border: none;
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      cursor: pointer;
-      border-radius: 0.5rem;
-    }
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem;
-      border-radius: 1rem;
-      max-width: 300px;
-      text-align: center;
-    }
-    footer {
-      text-align: center;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 1rem;
-      font-size: 0.9rem;
-    }
-    a {
-      color: #facc15;
-      text-decoration: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. Akshay | Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #00aaff;
+            --text-color: #e0e0e0;
+            --accent-color: #e84949;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        /* Navigation bar */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 25, 47, 0.9);
+            z-index: 10;
+        }
+        nav .logo {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #a0c4ff;
+            font-weight: 500;
+            transition: color .3s;
+        }
+        nav ul li a:hover {
+            color: #ffffff;
+        }
+        /* Hero section */
+        header.hero {
+            height: 100vh;
+            background-image: url('https://source.unsplash.com/1600x900/?technology,coding');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        header.hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        header.hero .hero-content {
+            z-index: 1;
+            text-align: center;
+            color: #ffffff;
+        }
+        header.hero h1 {
+            font-size: 3rem;
+        }
+        header.hero p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+        button.cta {
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            border: none;
+            background-color: var(--secondary-color);
+            color: #ffffff;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform .2s;
+        }
+        button.cta:hover {
+            transform: scale(1.05);
+        }
+        /* Generic section styling */
+        section {
+            padding: 4rem 2rem;
+        }
+        /* About section */
+        #about {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+        #about img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--secondary-color);
+        }
+        #about .bio {
+            max-width: 600px;
+        }
+        #about .bio h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        #about .bio p {
+            margin-bottom: 1rem;
+        }
+        /* Skills section */
+        #skills {
+            background-color: #112240;
+        }
+        #skills h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .skill {
+            width: 250px;
+        }
+        .skill h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .skill-bar {
+            background: #eeeeee;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 8px;
+        }
+        .skill-bar-inner {
+            height: 100%;
+            width: 0%;
+            background: var(--secondary-color);
+            transition: width 2s ease-in-out;
+        }
+        /* Projects section */
+        #projects h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: #112240;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .project-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        .project-card p {
+            flex-grow: 1;
+        }
+        .project-card a {
+            margin-top: 1rem;
+            text-decoration: none;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+        /* Contact section */
+        #contact {
+            background-color: #112240;
+            color: #ccd6f6;
+            text-align: center;
+        }
+        #contact h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        #contact .socials {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        #contact .socials a {
+            color: #64ffda;
+            font-size: 1.5rem;
+            transition: color .3s;
+        }
+        #contact .socials a:hover {
+            color: #ffffff;
+        }
+        #contact p {
+            margin-top: 1rem;
+        }
+        /* Footer */
+        footer {
+            background: #0a192f;
+            color: #8892b0;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+/* Education section */
+#education {
+    background-color: #0a192f;
+    color: var(--text-color);
+}
+#education h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.education-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+.education-item {
+    background: #112240;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+}
+.education-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+.education-item p {
+    margin-bottom: 0.5rem;
+}
+/* Responsive design */
+        @media(max-width: 768px) {
+            header.hero h1 {
+                font-size: 2.5rem;
+            }
+            #about {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Lapland Retreats</h1>
-    <p>Scenic Cabins. Arctic Adventures. Aurora Magic.</p>
-    <button class="cta">Book Your Stay</button>
-  </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Akshay</div>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <section>
-    <h2>Our Offerings</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Eco-Cabins</h3>
-        <p>Modern, cozy cabins with aurora views & sauna facilities.</p>
-      </div>
-      <div class="card">
-        <h3>Transport Services</h3>
-        <p>4x4 airport pickups, snow-safe vehicles, and guided day trips.</p>
-      </div>
-      <div class="card">
-        <h3>Adventure Tours</h3>
-        <p>Snowmobiles, reindeer safaris, and husky rides curated for you.</p>
-      </div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Akshay</h1>
+            <p>Aspiring AI/ML Developer &amp; Computer Science Student</p>
+            <button class="cta" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">Explore</button>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <img src="https://avatars.githubusercontent.com/u/113465396?v=4" alt="Akshay avatar">
+        <div class="bio">
+    <h2>About Me</h2>
+    <p>Hello! I'm Akshay Chauhan, an aspiring AI/ML developer and computer science student. My passion lies at the intersection of artificial intelligence and full‑stack development, and I'm continuously honing my skills in Python, Kotlin, JavaScript, and modern web technologies.</p>
+    <p>I'm currently working on projects in natural language processing, face recognition and full‑stack applications, while exploring real‑world applications through research and API integration. Known for an entrepreneurial mindset and strong team leadership, I thrive on building scalable tech solutions that blend innovation with impact.</p>
+</div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+    <div class="skill">
+        <h3>Python</h3>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="80"></div></div>
     </div>
-  </section>
+    <div class="skill">
+        <h3>Kotlin</h3>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="70"></div></div>
+    </div>
+    <div class="skill">
+        <h3>JavaScript</h3>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="75"></div></div>
+    </div>
+    <div class="skill">
+        <h3>TensorFlow</h3>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="65"></div></div>
+    </div>
+    <div class="skill">
+        <h3>Scikit-learn</h3>
+        <div class="skill-bar"><div class="skill-bar-inner" data-skill="60"></div></div>
+    </div>
+</div></section>
 
-  <section>
-    <h2>Contact & Booking</h2>
-    <p>Email: <a href="mailto:akshay.laplandventures@gmail.com">akshay.laplandventures@gmail.com</a></p>
-    <p>Phone/WhatsApp: +91-XXXXXXXXXX</p>
-    <p>Instagram: <a href="https://instagram.com/lapland.retreats" target="_blank">@lapland.retreats</a></p>
-  </section>
+    <!-- Education section removed as requested -->
+<section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid" id="projects-grid">
+            <!-- Static project cards -->
+            <div class="project-card">
+                <h3>AI Chatbot (Python &amp; NLP)</h3>
+                <p>Designed a rule‑based chatbot using NLTK and regex for natural language processing. Developing dynamic conversation flows with intent‑based branching and training on contextual datasets for enhanced response accuracy.</p>
+                <!-- Link to a public open-source implementation of a rule‑based chatbot using NLTK -->
+                <a href="https://github.com/NakulLakhotia/Simple-Chatbot-using-NLTK" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Weather App (Web Dev)</h3>
+                <p>Built a responsive weather app using JavaScript and the OpenWeatherMap API. Implemented location‑based search and real‑time weather data rendering; working on user interface polish and mobile responsiveness.</p>
+                <!-- Link to a public weather app built with JavaScript and OpenWeatherMap API -->
+                <a href="https://github.com/kshitizrohilla/weather-app-using-openweathermap-api" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Face Recognition with ML</h3>
+                <p>Developing a basic face detection and recognition system using OpenCV and scikit‑learn. Training models to identify facial features and classify images, with testing on diverse datasets for robustness.</p>
+                <!-- Link to a public face recognition project using OpenCV and machine learning -->
+                <a href="https://github.com/ageitgey/face_recognition" target="_blank">View Project</a>
+            </div>
+            <div class="project-card">
+                <h3>Practice Projects</h3>
+                <p>Built support features like real‑time text translation and text‑to‑speech conversion using Google ML Kit and developed CRM‑like dashboards using Python and GraphQL. Prototyped Reddit feed visualization and custom data views.</p>
+                <!-- Link to the user's GitHub profile for various practice projects -->
+                <a href="https://github.com/webdevrust" target="_blank">View Projects</a>
+            </div>
+            <div class="project-card">
+                <h3>MERN Hospital Management</h3>
+                <p>A MERN stack project for hospital management. This project includes admin dashboards for patient and doctor management, with features like appointment scheduling and analytics. Forked from Navneet's original project.</p>
+                <a href="https://github.com/webdevrust/mernadminproject" target="_blank">View Project</a>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    &copy; 2025 Lapland Retreats | Designed by Akshay Chauhan
-  </footer>
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get in Touch</h2>
+        <p>Feel free to reach out for collaborations or just a friendly hello!</p>
+        <p>Email: <a href="mailto:a.chauhan.professional@gmail.com">a.chauhan.professional@gmail.com</a></p>
+        <div class="socials">
+            <a href="https://github.com/webdevrust" target="_blank" title="GitHub">
+                <!-- GitHub icon (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M12 .5a12 12 0 00-3.79 23.4c.6.1.82-.26.82-.58v-2.03c-3.34.73-4.04-1.63-4.04-1.63-.55-1.4-1.34-1.77-1.34-1.77-1.1-.74.08-.73.08-.73 1.22.09 1.86 1.26 1.86 1.26 1.08 1.84 2.84 1.31 3.53 1 .11-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.94 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.16 0 0 1-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.64.24 2.86.12 3.16.77.84 1.24 1.92 1.24 3.23 0 4.62-2.81 5.64-5.49 5.94.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.58A12 12 0 0012 .5z" />
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/akshaychauhan-dev" target="_blank" title="LinkedIn">
+                <!-- LinkedIn icon (SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M4.98 3.5C4.98 4.88 3.87 6 2.49 6S0 4.88 0 3.5 1.11 1 2.49 1s2.49 1.11 2.49 2.5zM.23 8.09h4.52v13.66H.23V8.09zM7.38 8.09h4.32v1.86h.06c.6-1.14 2.06-2.34 4.23-2.34 4.53 0 5.36 2.99 5.36 6.89v7.25h-4.51v-6.43c0-1.53-.03-3.49-2.13-3.49-2.13 0-2.46 1.66-2.46 3.38v6.54H7.38V8.09z" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Akshay Chauhan. Built with ❤️ and coffee.</p>
+    </footer>
+
+    <script>
+        // Animate skill bars when they come into view
+        function animateSkills() {
+            const skills = document.querySelectorAll('.skill-bar-inner');
+            skills.forEach(skill => {
+                const value = skill.getAttribute('data-skill');
+                skill.style.width = value + '%';
+            });
+        }
+        let skillsAnimated = false;
+        window.addEventListener('scroll', function () {
+            const skillsSection = document.getElementById('skills');
+            const rect = skillsSection.getBoundingClientRect();
+            if (!skillsAnimated && rect.top < window.innerHeight) {
+                animateSkills();
+                skillsAnimated = true;
+            }
+        });
+
+        // Project cards are now static and defined in the HTML
+    </script>
 </body>
 </html>
-
