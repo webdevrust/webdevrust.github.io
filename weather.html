@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        /* Simple weather app styling inspired by features described in weather app tutorials【547753676202136†L155-L177】 */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .weather-container {
+            background-color: #112240;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 360px;
+        }
+        .weather-container h1 {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #00aaff;
+        }
+        .weather-container input {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: none;
+            margin-bottom: 1rem;
+            background-color: #0a192f;
+            color: #e0e0e0;
+        }
+        .weather-container button {
+            width: 100%;
+            padding: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #00aaff;
+            color: #0a192f;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        .weather-container button:hover {
+            background-color: #0090cc;
+        }
+        #weatherResult {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Weather App</h1>
+        <input type="text" id="cityInput" placeholder="Enter city name" />
+        <button id="searchBtn">Search Weather</button>
+        <div id="weatherResult"></div>
+    </div>
+
+    <script>
+    // Weather API base URL (using goweather API which returns temperature, wind and description as JSON【289321723459444†L0-L3】)
+    const API_BASE = 'https://goweather.herokuapp.com/weather/';
+    const searchBtn = document.getElementById('searchBtn');
+    const cityInput = document.getElementById('cityInput');
+    const resultDiv = document.getElementById('weatherResult');
+
+    searchBtn.addEventListener('click', fetchWeather);
+    // Allow pressing Enter to search
+    cityInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            fetchWeather();
+        }
+    });
+
+    function fetchWeather() {
+        const city = cityInput.value.trim();
+        if (!city) {
+            alert('Please enter a city name');
+            return;
+        }
+        resultDiv.innerHTML = '<p>Loading...</p>';
+        fetch(API_BASE + encodeURIComponent(city))
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.temperature) {
+                    resultDiv.innerHTML = `
+                        <h2>${city.charAt(0).toUpperCase() + city.slice(1)}</h2>
+                        <p><strong>Temperature:</strong> ${data.temperature}</p>
+                        <p><strong>Wind:</strong> ${data.wind}</p>
+                        <p><strong>Description:</strong> ${data.description}</p>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<p>City not found. Please try again.</p>';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                resultDiv.innerHTML = '<p>Error fetching data.</p>';
+            });
+    }
+    </script>
+</body>
+</html>
