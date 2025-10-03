@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Demo</title>
+    <style>
+        /* Chat interface styles inspired by examples of building a simple chatbot UI【695997528438937†L196-L229】 */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .chatBot {
+            background-color: #112240;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            width: 350px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .chatBot .header {
+            background-color: #00aaff;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            color: #0a192f;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .chatbox {
+            list-style: none;
+            padding: 1rem;
+            margin: 0;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .chat {
+            margin-bottom: 0.75rem;
+            display: flex;
+        }
+        .chat.incoming p {
+            background-color: #1e3a5f;
+            border-radius: 15px 15px 15px 0;
+            padding: 0.5rem 0.75rem;
+            max-width: 80%;
+        }
+        .chat.outgoing {
+            justify-content: flex-end;
+        }
+        .chat.outgoing p {
+            background-color: #00aaff;
+            color: #0a192f;
+            border-radius: 15px 15px 0 15px;
+            padding: 0.5rem 0.75rem;
+            max-width: 80%;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #223a64;
+        }
+        .chat-input textarea {
+            flex-grow: 1;
+            background: none;
+            border: none;
+            color: #e0e0e0;
+            padding: 0.75rem;
+            resize: none;
+            outline: none;
+            font-size: 1rem;
+        }
+        .chat-input span {
+            cursor: pointer;
+            background-color: #00aaff;
+            color: #0a192f;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+        .chat-input span:hover {
+            background-color: #0090cc;
+        }
+    </style>
+</head>
+<body>
+    <div class="chatBot">
+        <div class="header">Chatbot</div>
+        <ul class="chatbox" id="chatbox">
+            <li class="chat incoming">
+                <p>Hello! I'm Chatbot. Ask me anything.</p>
+            </li>
+        </ul>
+        <div class="chat-input">
+            <textarea id="userInput" placeholder="Type your message..." rows="1"></textarea>
+            <span id="sendBtn">▶</span>
+        </div>
+    </div>
+
+    <script>
+    // Handle sending messages and generating replies
+    const chatbox = document.getElementById('chatbox');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const msg = userInput.value.trim();
+        if (!msg) return;
+        appendMessage(msg, 'outgoing');
+        userInput.value = '';
+        const response = getResponse(msg);
+        setTimeout(() => {
+            appendMessage(response, 'incoming');
+        }, 600);
+    }
+
+    function appendMessage(text, type) {
+        const li = document.createElement('li');
+        li.className = 'chat ' + type;
+        const p = document.createElement('p');
+        p.textContent = text;
+        li.appendChild(p);
+        chatbox.appendChild(li);
+        // Scroll to the latest message
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    // Very simple rule‑based responses
+    function getResponse(msg) {
+        const message = msg.toLowerCase();
+        if (message.includes('hello') || message.includes('hi')) {
+            return 'Hello! How can I assist you today?';
+        } else if (message.includes('how are you')) {
+            return 'I am just a program, but I am functioning properly.';
+        } else if (message.includes('your name')) {
+            return 'I am your friendly chatbot.';
+        } else if (message.includes('weather')) {
+            return 'Try the weather app on the main portfolio to get real‑time weather updates!';
+        } else {
+            return 'I am sorry, I do not understand. Could you ask something else?';
+        }
+    }
+    </script>
+</body>
+</html>
