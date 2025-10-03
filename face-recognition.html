@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Demo</title>
+    <style>
+        /* Basic styling for the face recognition demo */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a192f;
+            color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        h1 {
+            color: #00aaff;
+            margin-bottom: 1rem;
+        }
+        #imageUpload {
+            margin-bottom: 1rem;
+        }
+        .image-container {
+            position: relative;
+            max-width: 500px;
+        }
+        .image-container img,
+        .image-container canvas {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Recognition Demo</h1>
+    <p>Upload a photo and the model will detect faces within it.</p>
+    <input id="imageUpload" type="file" accept="image/*" />
+    <div class="image-container">
+        <img id="inputImage" />
+        <canvas id="overlayCanvas"></canvas>
+    </div>
+    <!-- Load face-api.js from CDN -->
+    <script src="https://unpkg.com/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script>
+    // Face recognition using the lightweight Tiny Face Detector model; it is small (~190KB) and performs well in browsers【454336895023219†L133-L154】.
+    const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
+    const imageUpload = document.getElementById('imageUpload');
+    const inputImage = document.getElementById('inputImage');
+    const overlayCanvas = document.getElementById('overlayCanvas');
+
+    // Load the model when the page loads
+    Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL)
+    ]).then(() => {
+        console.log('Models loaded');
+    }).catch((err) => {
+        console.error('Error loading models:', err);
+    });
+
+    imageUpload.addEventListener('change', async () => {
+        const file = imageUpload.files[0];
+        if (!file) return;
+        inputImage.src = URL.createObjectURL(file);
+        // Wait for the image to load before processing
+        inputImage.onload = async () => {
+            // Resize overlay canvas to match image
+            overlayCanvas.width = inputImage.width;
+            overlayCanvas.height = inputImage.height;
+            const detections = await faceapi.detectAllFaces(inputImage, new faceapi.TinyFaceDetectorOptions());
+            // Clear the canvas
+            const ctx = overlayCanvas.getContext('2d');
+            ctx.clearRect(0, 0, overlayCanvas.width, overlayCanvas.height);
+            // Draw detections
+            faceapi.draw.drawDetections(overlayCanvas, detections);
+        };
+    });
+    </script>
+</body>
+</html>
